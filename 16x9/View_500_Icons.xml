@@ -132,7 +132,9 @@
 						</animation>
 					</control>
 				</focusedlayout>
+				<!-- USED WHEN THE ITEM IN THE WALL IS *NOT* SELECTED??? -->
 				<itemlayout height="360" width="420" condition="![Container.Content(addons) | Container.Content(genres) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(sets)]">
+					<!-- Video thumbnail -->
 					<control type="image">
 						<width>420</width>
 						<height>360</height>
@@ -151,14 +153,7 @@
 						<bordersize>2</bordersize>
 						<visible>Container.Content(episodes)</visible>
 					</control>
-					<control type="image">
-						<left>320</left>
-						<width>100</width>
-						<height>100</height>
-						<texture>$VAR[OverlayVar]</texture>
-						<aspectratio align="center" aligny="top">keep</aspectratio>
-						<bordersize>1</bordersize>
-					</control>
+<!-- Watched Banner Was Here -->
 					<control type="image">
 						<top>310</top>
 						<width>420</width>
@@ -176,13 +171,56 @@
 						<textcolor>grey2</textcolor>
 						<info>ListItem.Label</info>
 					</control>
+					<!-- NEW STUFF HERE -->
+					<control type="image">
+						<!-- Grey background -->
+						<!-- If this item is NOT a folder (i.e. it's a file) -->
+						<visible>!ListItem.IsFolder</visible>
+						<!-- Draw a gray semitransparent bar at the top of the thumbnail -->
+						<top>0</top>
+						<!-- Leave a space for the "unwatched" glyph/icon -->
+						<width>335</width>
+						<height>47</height>
+						<texture>black.png</texture>
+						<bordersize>2</bordersize>
+						<colordiffuse>88ffffff</colordiffuse>
+					</control>
+					<control type="label">
+						<!-- Duration text (e.g. "23:12 min") -->
+						<!-- If this item is NOT a folder (i.e. it's a file) -->
+						<visible>!ListItem.IsFolder</visible>
+						<!-- Draw the video duration on the grey bar above -->
+						<top>5</top>
+						<width>420</width>
+						<height>35</height>
+						<font>font13</font>
+						<align>left</align>
+						<!-- Move it in a bit from the left -->
+						<textoffsetx>15</textoffsetx>
+						<textcolor>grey2</textcolor>
+						<!-- Get the duration as "MM:SS" and add " min" -->
+						<label>$INFO[ListItem.Duration] min</label>
+<!--					 <info>ListItem.Duration</info> -->
+					</control>
+					<!-- The Watched banner??? -->
+					<control type="image">
+						<left>320</left>
+						<width>100</width>
+						<height>100</height>
+						<texture>$VAR[OverlayVar]</texture>
+						<aspectratio align="center" aligny="top">keep</aspectratio>
+						<bordersize>1</bordersize>
+					</control>
+					<!-- END NEW STUFF -->
 				</itemlayout>
+				<!-- USED WHEN THE ITEM IN THE WALL IS SELECTED??? -->
 				<focusedlayout height="360" width="420" condition="![Container.Content(addons) | Container.Content(genres) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(sets)]">
 					<control type="group">
 						<animation type="Focus" reversible="false">
 							<effect type="zoom" start="95" end="100" time="300" tween="sine" easing="inout" center="auto" />
 							<effect type="fade" start="80" end="100" time="300" tween="sine" easing="in" />
 						</animation>
+						<!-- Video thumbnail image -->
 						<control type="image">
 							<width>420</width>
 							<height>360</height>
@@ -201,14 +239,8 @@
 							<bordersize>8</bordersize>
 							<visible>Container.Content(episodes)</visible>
 						</control>
-						<control type="image">
-							<left>320</left>
-							<width>100</width>
-							<height>100</height>
-							<texture>$VAR[OverlayVar]</texture>
-							<aspectratio align="center" aligny="top">keep</aspectratio>
-							<bordersize>8</bordersize>
-						</control>
+						<!-- Watched Banner Was Here -->
+						<!-- Dark background field for filename -->
 						<control type="image">
 							<left>6</left>
 							<top>310</top>
@@ -218,6 +250,7 @@
 							<bordersize>2</bordersize>
 							<colordiffuse>88ffffff</colordiffuse>
 						</control>
+						<!-- Filename -->
 						<control type="label">
 							<top>310</top>
 							<width>420</width>
@@ -225,6 +258,48 @@
 							<align>center</align>
 							<textoffsetx>10</textoffsetx>
 							<info>ListItem.Label</info>
+						</control>
+						<!-- NEW STUFF HERE -->
+						<control type="image">
+							<!-- Dark grey background field for duration -->
+							<!-- If this item is NOT a folder (i.e. it's a file) -->
+							<visible>!ListItem.IsFolder</visible>
+							<!-- Draw a gray semitransparent bar at the top of the thumbnail -->
+							<top>0</top>
+							<!-- Leave a space for the "unwatched" glyph/icon -->
+							<!-- Add an 8px border and adjust the size so the rectangle -->
+							<!-- doesn't overlap the blue "selection box" -->
+							<width>349</width>  <!-- 341 -->
+							<height>53</height> <!-- 45 -->
+							<texture>black.png</texture>
+							<bordersize>8</bordersize>
+							<colordiffuse>88ffffff</colordiffuse>
+						</control>
+						<control type="label">
+							<!-- Duration text (e.g. "23:12 min") -->
+							<!-- If this item is NOT a folder (i.e. it's a file) -->
+							<visible>!ListItem.IsFolder</visible>
+							<!-- Draw the video duration on the grey bar above -->
+							<top>5</top>
+							<width>420</width>
+							<height>35</height>
+							<font>font13</font>
+							<align>left</align>
+							<!-- Move it in a bit from the left -->
+							<textoffsetx>15</textoffsetx>
+							<!-- Get the duration as "MM:SS" and add " min" -->
+							<label>$INFO[ListItem.Duration] min</label>
+	<!--					 <info>ListItem.Duration</info> -->
+						</control>
+						<!-- END NEW STUFF -->
+						<!-- THE WATCHED BANNER -->
+						<control type="image">
+							<left>320</left>
+							<width>100</width>
+							<height>100</height>
+							<texture>$VAR[OverlayVar]</texture>
+							<aspectratio align="center" aligny="top">keep</aspectratio>
+							<bordersize>8</bordersize>
 						</control>
 					</control>
 				</focusedlayout>
