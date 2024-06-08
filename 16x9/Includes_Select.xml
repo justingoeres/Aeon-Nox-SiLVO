@@ -2,12 +2,7 @@
 <includes>
 	<!-- Built-in-Select -->
 	<include name="DefaultSelect">
-		<control type="image">
-			<include>FullscreenDimensions</include>
-			<texture>colors/black50.png</texture>
-			<animation effect="fade" time="300">WindowOpen</animation>
-			<animation effect="fade" time="300">WindowClose</animation>
-		</control>
+		<include>DimBackground</include>
 		<control type="group">
 			<include>DialogOpenCloseAnimation</include>
 			<left>210</left>
@@ -123,7 +118,7 @@
 							<textoffsetx>15</textoffsetx>
 							<textcolor>grey2</textcolor>
 							<shadowcolor>shadow</shadowcolor>
-							<label>$INFO[ListItem.Label]</label>
+							<label>$VAR[DialogSelectLabelVar]</label>
 						</control>
 						<control type="label">
 							<width>950</width>
@@ -150,7 +145,7 @@
 								<font>font14</font>
 								<textoffsetx>15</textoffsetx>
 								<shadowcolor>shadow</shadowcolor>
-								<label>$INFO[ListItem.Label]</label>
+								<label>$VAR[DialogSelectLabelVar]</label>
 							</control>
 							<control type="label">
 								<width>950</width>
@@ -198,6 +193,7 @@
 				<description>Add/Get More... button</description>
 				<onfocus>SetFocus(98)</onfocus>
 				<include>HiddenObject</include>
+				<visible>!Window.IsActive(script-skinshortcuts.xml)</visible>
 			</control>
 		</control>
 	</include>
@@ -1335,7 +1331,7 @@
 	<include name="SetPresetSiLVOTheme">
 		<include>ResetSkinColorsOnclick</include>
 		<onclick>Skin.SetString(ThemeLabelColor,FFFF9800)</onclick>
-		<onclick>Skin.SetString(ThemeBorderColor,FF606060)</onclick>
+		<onclick>Skin.SetString(ThemeBorderColor,FF0F0F0F)</onclick>
 		<onclick>Skin.SetString(ThemeHomeMenuBarColor,FFFF9800)</onclick>
 		<onclick>Skin.SetString(FocusedMainMenuColor,white)</onclick>
 		<onclick>Skin.SetString(UnfocusedMainMenuColor,FF000000)</onclick>

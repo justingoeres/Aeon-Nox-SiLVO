@@ -70,7 +70,13 @@
 						<label>[COLOR $VAR[ThemeLabelColor]]$LOCALIZE[2050]:[/COLOR][CR]$INFO[ListItem.Duration(mins),, $LOCALIZE[12391]]</label>
 						<width>448</width>
 						<include>DefaultButtonsValues</include>
-						<visible>!String.IsEmpty(ListItem.Duration)</visible>
+						<visible>!String.IsEmpty(ListItem.Duration) + !Skin.HasSetting(Enable.HourMinuteDuration)</visible>
+					</control>
+					<control type="button">
+						<label>[COLOR $VAR[ThemeLabelColor]]$LOCALIZE[2050]:[/COLOR][CR]$VAR[ItemDurationVar]</label>
+						<width>448</width>
+						<include>DefaultButtonsValues</include>
+						<visible>!String.IsEmpty(ListItem.Duration) + Skin.HasSetting(Enable.HourMinuteDuration)</visible>
 					</control>
 				</control>
 				<control type="grouplist">
@@ -648,7 +654,7 @@
 							<width>198</width>
 							<colordiffuse>grey2</colordiffuse>
 							<include>MediaFlagValues</include>
-							<texture fallback="rating0.png">$INFO[ListItem.UserRating,flags/rating/,.png]</texture>
+							<texture fallback="flags/rating/empty.png">$INFO[ListItem.UserRating,flags/rating/,.png]</texture>
 							<visible>!String.IsEmpty(ListItem.StarRating)</visible>
 						</control>
 					</control>
@@ -689,7 +695,7 @@
 						<width>198</width>
 						<colordiffuse>grey2</colordiffuse>
 						<include>MediaFlagValues</include>
-						<texture fallback="rating0.png">$INFO[ListItem.UserRating,flags/rating/,.png]</texture>
+						<texture fallback="flags/rating/empty.png">$INFO[ListItem.UserRating,flags/rating/,.png]</texture>
 						<visible>!String.IsEmpty(ListItem.StarRating)</visible>
 					</control>
 				</control>
